@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block body_block %}
+    <div class="card">
+        <h5 class="card-header">Programs</h5>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th>Program Name</th>
+                        <th>Program Cost</th>
+                        <th></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for program_item in program_items %}
+                        <tr>
+                            <td>{{ program_item.name }}</td>
+                            <td></td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            <a href="#" class="btn btn-block btn-light">View all</a>
+        </div>
+    </div>
+{% endblock body_block %}

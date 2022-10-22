@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+{% load static %}
+
+                    {% block card1_block %}
+                        {% include 'blocks/spending.html' %}
+                    {% endblock card1_block %}
+{% block card2_block %}
+{% include '../blocks/main_graph.html' %}
+{% endblock card2_block %}
+{% block card3_block %}
+
+                    <div class="card">
+                        <h5 class="card-header">Purchases</h5>
+                        <div class="card-body">
+                            <h5 class="card-title">43</h5>
+                            <p class="card-text">Feb 1 - Apr 1, United States</p>
+                            <p class="card-text text-danger">2.6% decrease since last month</p>
+                        </div>
+                    </div>
+{% endblock card3_block %}
+{% block card4_block %}
+                    <div class="card">
+                        <h5 class="card-header">Traffic</h5>
+                        <div class="card-body">
+                            <h5 class="card-title">64k</h5>
+                            <p class="card-text">Feb 1 - Apr 1, United States</p>
+                            <p class="card-text text-success">2.5% increase since last month</p>
+                        </div>
+                    </div>
+{% endblock card4_block %}
+
+{% block body_block %}
+    <div class="card">
+        <h5 class="card-header">Programs</h5>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th>Project Name</th>
+                        <th>Program Name</th>
+                        <th>Project Cost</th>
+                        <th></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for project_item in project_items %}
+                        <tr>
+                            <td>{{ project_item.name }}</td>
+                            <td></td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            <a href="#" class="btn btn-block btn-light">View all</a>
+        </div>
+    </div>
+{% endblock body_block %}
