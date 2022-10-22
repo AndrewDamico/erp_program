@@ -4,7 +4,7 @@ from django.contrib.auth.models import User
 from django.db.models import Sum
 from django.urls import reverse
 from django.utils.translation import gettext_lazy as _
-# Create your models here.
+
 '''
 class AccountInfo(models.Model):
     username = models.CharField(max_length=20)
