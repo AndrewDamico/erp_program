@@ -7,40 +7,16 @@ from django.contrib.auth.forms import UserCreationForm
 from django.db.models import Sum
 import matplotlib.pyplot as plt
 import numpy as np
+import datetime
 from django.db.models import Q
 # Create your views here.
 
-'''
-def index(request):
-    expense_items = ExpenseInfo.objects.filter(user_expense=request.user).order_by('-date_added')
-    try:
-        budget_total = ExpenseInfo.objects.filter(user_expense=request.user).aggregate(budget=Sum('cost',filter=Q(cost__gt=0)))
-        expense_total = ExpenseInfo.objects.filter(user_expense=request.user).aggregate(expenses=Sum('cost',filter=Q(cost__lt=0)))
-        fig,ax=plt.subplots()
-        ax.bar(['Expenses','Budget'], [abs(expense_total['expenses']),budget_total['budget']],color=['red','green'])
-        ax.set_title('Your total expenses vs total budget')
-        plt.savefig('budget_app/static/budget_app/expense.jpg')
-    except TypeError:
-        print ('No data.')
-    try:
-        context = {'expense_items':expense_items,
-                   'budget':budget_total['budget'],
-                   'expenses':abs(expense_total['expenses']),
-                   'remain':budget_total['budget']-abs(expense_total['expenses'])}
-    except:
-        context = {'expense_items': expense_items,
-                   'budget': budget_total['budget'],
-                   'expenses': abs(0),
-                   'remain': budget_total['budget']-0,
-                   }
-    return render(request,'budget_app/index.html',context=context)
-'''
 
 def index(request):
-    expense_items = ExpenseInfo.objects.filter(user_expense=request.user).order_by('-date_added')
+    expense_items = BudgetItem.objects.all()
     try:
-        budget_total = ExpenseInfo.objects.filter(user_expense=request.user).aggregate(budget=Sum('cost',filter=Q(cost__gt=0)))
-        expense_total = ExpenseInfo.objects.filter(user_expense=request.user).aggregate(expenses=Sum('cost',filter=Q(cost__lt=0)))
+        budget_total = BudgetItem.objects.all().aggregate(budget=Sum('cost',filter=Q(cost__gt=0)))
+        expense_total = BudgetItem.objects.all().aggregate(expenses=Sum('cost',filter=Q(cost__lt=0)))
         fig,ax=plt.subplots()
         ax.bar(['Expenses','Budget'], [abs(expense_total['expenses']),budget_total['budget']],color=['red','green'])
         ax.set_title('Your total expenses vs total budget')
@@ -75,12 +51,6 @@ def projects(request):
     }
     return render(request,'budget_app/projects.html', context=context)
 
-def projects(request):
-    project_items = ProjectCharter.objects.all()
-    context = {
-        'project_items':project_items,
-    }
-    return render(request,'budget_app/projects.html', context=context)
 
 def table(request):
     expense_items = BudgetItem.objects.all()
@@ -106,6 +76,7 @@ def table(request):
                    }
     return render(request,'budget_app/table.html',context=context)
 
+
 def add_item(request):
     event_name = request.POST['event_name']
     name = request.POST['expense_name']
@@ -130,7 +101,6 @@ def logout_view(request):
     logout(request)
     return HttpResponseRedirect('/')
 
-
 def sign_up(request):
     if request.method == 'POST':
         form = UserCreationForm(request.POST)
@@ -145,17 +115,16 @@ def sign_up(request):
         form = UserCreationForm
         return render(request,'budget_app/sign_up.html',{'form':form})
 
-#DataFlair #Views #TemplateInheritance
-# Create your views here.
+
 def home(request):
     return render(request, 'base.html')
+
 def other(request):
     context = {
     'k1': 'Welcome to the Second page',
     }
     return render(request, 'others.html', context)
 
-import datetime
 def about(request):
     time = datetime.datetime.now()
     return render(request, 'about.html',{'time': time})
