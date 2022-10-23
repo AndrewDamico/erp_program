@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block dashboard %}
+            <div class="row my-4">
+                <div class="col-12 col-md-6  mb-4 mb-lg-0 col-lg-4">
+                    {% block card1_block %}
+                        {% include 'blocks/spending.html' %}
+                    {% endblock card1_block %}
+                </div>
+                <div class="col-12 col-md-6 mb-4 mb-lg-0 col-lg-4">
+                    {% block card2_block %}
+                        {% include 'blocks/main_graph.html' %}
+                    {% endblock %}
+                </div>
+                <div class="col-12 col-md-6 mb-4 mb-lg-0 col-lg-4">
+                    {% block card3_block %}
+                    {% endblock %}
+                </div>
+            </div>
+{% endblock dashboard%}
