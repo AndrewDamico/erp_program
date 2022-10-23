@@ -79,11 +79,11 @@ WSGI_APPLICATION = 'budget_project.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': env('NAME'),
-        'USER': env('USER'),
-        'PASSWORD': env('PASSWORD'),
-        'HOST': env('HOST'),
-        'PORT': env('PORT'),
+        'NAME': env('erp_NAME'),
+        'USER': env('erp_USER'),
+        'PASSWORD': env('erp_PASSWORD'),
+        'HOST': env('erp_HOST'),
+        'PORT': env('erp_PORT'),
     }
 }
 
