@@ -31,25 +31,29 @@
 
 {% block body_block %}
     <div class="card">
-        <h5 class="card-header">Programs</h5>
+        <h5 class="card-header">Projects</h5>
         <div class="card-body">
             <div class="table-responsive">
                 <table class="table">
                     <thead>
                     <tr>
                         <th>Project Name</th>
+                        <th>Planning Date</th>
                         <th>Event Date</th>
                         <th>Project Quarter</th>
                         <th>Project Year</th>
+                        <th>Program Name</th>
                     </tr>
                     </thead>
                     <tbody>
                     {% for project_item in project_items %}
                         <tr>
                             <td>{{ project_item.name }}</td>
-                            <td>{{  project_item.schedule.event_date }}</td>
+                            <td>{{  project_item.schedule.start_date }}</td>
+                            <td>{{  project_item.date }}</td>
                             <td>{{ project_item.schedule.quarter }}</td>
                             <td>{{ project_item.schedule.fiscalyear }}</td>>
+                            <td>{{  project_item.Program }}</td>
                         </tr>
                     {% endfor %}
                     </tbody>

@@ -51,7 +51,7 @@ def programs(request):
     return render(request,'budget_app/programs.html', context=context)
 
 def projects(request):
-    project_items = ProjectCharter.objects.all()
+    project_items = ProjectCharter.objects.all().order_by("schedule__start_date")
     context = {
         'project_items':project_items,
     }
