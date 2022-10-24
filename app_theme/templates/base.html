@@ -12,7 +12,7 @@
 </head>
 
 <body>
-{% include 'blocks/navbar.html' %}
+{% include 'menu/navbar.html' %}
 
 <div class="container-fluid">
 
@@ -21,7 +21,7 @@
             <img class='responsive-img' src="{% static 'budget_app/Logo MSDS SLC.png' %}" width="100%">
             <div class="position-sticky pt-md-5">
                 <ul class="nav flex-column">
-                    {% include 'blocks/navigation_menu.html' %}
+                     {% include 'menu/navigation_menu.html' %}
                 </ul>
             </div>
         </nav>
@@ -34,8 +34,10 @@
             </nav>
             {% block dashboard %}
             {% endblock dashboard %}
+        <!--
             <h1 class="h2">Dashboard</h1>
             <p>Welcome to the Northwestern MSDS SLC Budgeting App</p>
+            -->
             <!-- blocks -->
             <div class="row">
                 <div class="col-md-12 ml-sm-auto col-lg-12 px-md-4 py-4">
@@ -43,7 +45,7 @@
                     {% endblock %}
                 </div>
             </div>
-            {% include 'blocks/footer.html' %}
+            {% include 'menu/footer.html' %}
         </main>
     </div>
 </div>
