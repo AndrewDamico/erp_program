@@ -62,7 +62,7 @@ sphinx:
 
 # Build settings
 markdown: kramdown
-theme: minima
+theme: Modernist
 plugins:
   - jekyll-feed
 
