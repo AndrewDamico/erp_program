@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>1. The ROS VIPER Library &#8212; Andrew&#39;s ERP Budget Software</title>
+    <title>1. ERP Project &#8212; Andrew&#39;s ERP Software Project</title>
     
   <!-- Loaded before other Sphinx assets -->
   <link href="_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
@@ -61,7 +61,7 @@ var addUtterances = () => {
     script.src = "https://utteranc.es/client.js";
     script.async = "async";
 
-    script.setAttribute("repo", "https://github.com/AndrewDamico/erp_program");
+    script.setAttribute("repo", "https://github.com/AndrewDamico/viper");
     script.setAttribute("issue-term", "pathname");
     script.setAttribute("theme", "github-light");
     script.setAttribute("label", "💬 comment");
@@ -83,7 +83,6 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="_static/sphinx-thebe.js"></script>
-    <link rel="author" title="About these documents" href="about.html" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="prev" title="Vision Inference Processing Endogenous Robot" href="introduction.html" />
@@ -125,7 +124,7 @@ const thebe_selector_output = ".output, .cell_output"
       
       
       
-      <h1 class="site-logo" id="site-title">Andrew's ERP Budget Software</h1>
+      <h1 class="site-logo" id="site-title">Andrew's ERP Software Project</h1>
       
     </a>
 </div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
@@ -149,7 +148,19 @@ const thebe_selector_output = ".output, .cell_output"
 <ul class="current nav bd-sidenav">
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
-   1. The ROS VIPER Library
+   1. ERP Project
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Hardware
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference external" href="https://www.raspberrypi.com/">
+   Raspberry Pi
   </a>
  </li>
 </ul>
@@ -252,7 +263,7 @@ title="Fullscreen mode"
   <div class="menu-dropdown__content">
     <ul>
       <li>
-        <a href="https://github.com/AndrewDamico/erp_program"
+        <a href="https://github.com/AndrewDamico/viper"
    class="headerbtn"
    data-toggle="tooltip"
 data-placement="left"
@@ -269,7 +280,7 @@ title="Source repository"
       </li>
       
       <li>
-        <a href="https://github.com/AndrewDamico/erp_program/issues/new?title=Issue%20on%20page%20%2Freadme.html&body=Your%20issue%20content%20here."
+        <a href="https://github.com/AndrewDamico/viper/issues/new?title=Issue%20on%20page%20%2Freadme.html&body=Your%20issue%20content%20here."
    class="headerbtn"
    data-toggle="tooltip"
 data-placement="left"
@@ -286,7 +297,7 @@ title="Open an issue"
       </li>
       
       <li>
-        <a href="https://github.com/AndrewDamico/erp_program/edit/main/https://andrewdamico.github.io/erp_program/readme.md"
+        <a href="https://github.com/AndrewDamico/viper/edit/main/https://andrewdamico.github.io/viper/readme.md"
    class="headerbtn"
    data-toggle="tooltip"
 data-placement="left"
@@ -351,80 +362,23 @@ title="Print to PDF"
     </ul>
   </div>
 </div>
-<label for="__page-toc"
-  class="headerbtn headerbtn-page-toc"
-  
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-list"></i>
-  </span>
-
-</label>
 
     </div>
 </div>
 
 <!-- Table of contents -->
 <div class="col-md-3 bd-toc show noprint">
-    <div class="tocsection onthispage pt-5 pb-3">
-        <i class="fas fa-list"></i> Contents
-    </div>
-    <nav id="bd-toc-nav" aria-label="Page">
-        <ul class="visible nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#installation">
-   1.1. Installation
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#contributing">
-   1.2. Contributing
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#license">
-   1.3. License
-  </a>
- </li>
-</ul>
-
-    </nav>
 </div>
     </div>
     <div class="article row">
         <div class="col pl-md-3 pl-lg-5 content-container">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
-                <h1>The ROS VIPER Library</h1>
+                <h1>ERP Project</h1>
                 <!-- Table of contents -->
                 <div id="print-main-content">
                     <div id="jb-print-toc">
                         
-                        <div>
-                            <h2> Contents </h2>
-                        </div>
-                        <nav aria-label="Page">
-                            <ul class="visible nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#installation">
-   1.1. Installation
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#contributing">
-   1.2. Contributing
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#license">
-   1.3. License
-  </a>
- </li>
-</ul>
-
-                        </nav>
                     </div>
                 </div>
             </div>
@@ -432,35 +386,14 @@ title="Print to PDF"
                 
               <div>
                 
-  <div class="tex2jax_ignore mathjax_ignore section" id="the-ros-viper-library">
-<h1><span class="section-number">1. </span>The ROS VIPER Library<a class="headerlink" href="#the-ros-viper-library" title="Permalink to this headline">#</a></h1>
-<p>The VIPER Vision Inferencing Processing Endogenous Robot operates on Ubuntu 20.04 and utilizes Python and C++ programming languages. At its core it runs on the Robotic OS platform (ROS: ‘Noetic’ Release), and implements the Intel Neural Compute Stick 2, showcasing the OpenVino model optimization toolkit.</p>
-<p>The VIPER network Network consisting of 6 Nodes and
-a Python Utilities package. One of the many reasons I chose ROS was due to the scalability of the Nodes and the network structure. Currently, all nodes are operated on the Viper “Parmenides” Device, however multiple devices could support multiple nodes within the same private network connected via WiFi or bluetooth, creating a mobile computing cluster and enabling multidimensional modeling. (One of the use cases I will be creating demonstrates how two devices can use their independent inferences to create additional network inferences).</p>
-<p>The Viper Workspace contains the following packages:</p>
-<ul class="simple">
-<li><p>augmented_vr_module Aggregates the model outputs into a single
-output which can contain the original image (Augmented Reality) or only contain model output (Virtual Reality)</p></li>
-<li><p>image_server Manages the delivery of the video input to throttle for just-in-time delivery. The image_server tracks when nodes require new images to minimize waste (images which are deliveredbut dropped.</p></li>
-<li><p>inland_ir_cam Adapts the Raspicam module for use with the Inland IR Camera on the 64 Bit Linux Ubuntu System, running on the Raspberry Pi 4+</p></li>
-<li><p>model_server Manages the neural networks on the Intel Neural Compute Stick 2 Visual Processing Unit (VPU) by running the main instance of the OpenVino Inference Engine, and managing service requests to perform inference.</p></li>
-<li><p>pose_detection_module Uses the Pose_detection_model to infer the presence of humans and predict their posture</p></li>
-<li><p>scene_segmentation_model Takes an input and classifies the image blobs as one of four seperate classes.</p></li>
-<li><p>viper_toolkit A python module which contains multiple utilities build to help manage subsystems accross the different nodes, including log management, name management, parameter management, and process timer management.</p></li>
-</ul>
-<div class="section" id="installation">
-<h2><span class="section-number">1.1. </span>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">#</a></h2>
-<p>Package should be installed using the ROS package manager.</p>
-</div>
-<div class="section" id="contributing">
-<h2><span class="section-number">1.2. </span>Contributing<a class="headerlink" href="#contributing" title="Permalink to this headline">#</a></h2>
-<p>Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.</p>
-<p>Please make sure to update tests as appropriate.</p>
-</div>
-<div class="section" id="license">
-<h2><span class="section-number">1.3. </span>License<a class="headerlink" href="#license" title="Permalink to this headline">#</a></h2>
-<p>[<a class="reference external" href="https://github.com/AndrewDamico/viper/blob/main/LICENSE">BSD</a></p>
-</div>
+  <div class="tex2jax_ignore mathjax_ignore section" id="erp-project">
+<h1><span class="section-number">1. </span>ERP Project<a class="headerlink" href="#erp-project" title="Permalink to this headline">#</a></h1>
+<p>Andrew Damico</p>
+<p>This project creates a budget tracking module.
+Requirements.txt contains all necessary python modules.
+This was created using Python 3.7</p>
+<p>To start server, run:</p>
+<p>python manage.py runserver</p>
 </div>
 
     <script type="text/x-thebe-config">
