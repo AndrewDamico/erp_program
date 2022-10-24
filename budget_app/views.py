@@ -10,7 +10,13 @@ import numpy as np
 import datetime
 from django.db.models import Q
 # Create your views here.
-
+'''
+use a2dam_erp
+select budget_app_projectcharter.name, budget_app_program.name, budget_app_program_project.program_id, budget_app_program_project.projectcharter_id
+from budget_app_program, budget_app_projectcharter, budget_app_program_project
+where budget_app_projectcharter.id = budget_app_program_project.projectcharter_id
+AND budget_app_program.id = budget_app_program_project.program_id
+'''
 
 def index(request):
     expense_items = BudgetItem.objects.all()
