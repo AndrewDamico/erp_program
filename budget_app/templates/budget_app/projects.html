@@ -38,22 +38,24 @@
                     <thead>
                     <tr>
                         <th>Project Name</th>
-                        <th>Program Name</th>
-                        <th>Project Cost</th>
-                        <th></th>
+                        <th>Event Date</th>
+                        <th>Project Quarter</th>
+                        <th>Project Year</th>
                     </tr>
                     </thead>
                     <tbody>
                     {% for project_item in project_items %}
                         <tr>
                             <td>{{ project_item.name }}</td>
-                            <td></td>
+                            <td>{{  project_item.schedule.event_date }}</td>
+                            <td>{{ project_item.schedule.quarter }}</td>
+                            <td>{{ project_item.schedule.fiscalyear }}</td>>
                         </tr>
                     {% endfor %}
                     </tbody>
                 </table>
             </div>
-            <a href="#" class="btn btn-block btn-light">View all</a>
+           <!-- #todo <a href="#" class="btn btn-block btn-light">View all</a> -->
         </div>
     </div>
 {% endblock body_block %}

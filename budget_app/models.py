@@ -29,6 +29,7 @@ class FiscalYear(models.Model):
 
 class Schedule(models.Model):
     schedule_name = models.CharField(max_length = 20, blank=True, null=True)
+    event_date = models.DateField('Event Date', blank=True, null=True)
     start_date = models.DateField('Schedule Start Date', blank=True, null=True)
     end_date = models.DateField('Schedule End Date', blank=True, null=True)
     fiscalyear = models.ForeignKey(FiscalYear, on_delete=models.PROTECT)
@@ -38,6 +39,8 @@ class Schedule(models.Model):
             self.start_date = self.fiscalyear.FY_start_date
         if not self.end_date:
             self.end_date = self.fiscalyear.FY_end_date
+        if not self.event_date:
+            self.event_date = self.start_date
         if not self.schedule_name:
             self.schedule_name = f"{self.quarter} {self.fiscalyear} ({self.start_date} to {self.end_date})"
         return self.schedule_name
