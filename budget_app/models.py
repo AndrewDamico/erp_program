@@ -35,6 +35,12 @@ class Schedule(models.Model):
     end_date = models.DateField('Schedule End Date', blank=True, null=True)
     fiscalyear = models.ForeignKey(FiscalYear, on_delete=models.PROTECT)
     quarter = models.ForeignKey(Quarter, on_delete=models.PROTECT)
+    @property
+    def date(self):
+        if self.event_date == None:
+            return self.start_date
+        else:
+            return self.event_date
     def __str__(self):
         if not self.start_date:
             self.start_date = self.fiscalyear.FY_start_date
@@ -134,6 +140,9 @@ class ProjectCharter(models.Model):
     scope = models.ForeignKey(ScopeStatement, on_delete=models.PROTECT)
     sponsor = models.CharField(max_length=30)
     #approval
+    @property
+    def date(self):
+        return self.schedule.date
     def __str__(self):
         return self.name
 

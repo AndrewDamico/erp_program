@@ -5,7 +5,6 @@ db.sqlite3
 *.env
 .vscode
 /static/
-/budget_app/migrations/*
 /backup/
 .idea
 _build
