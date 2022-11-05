@@ -149,9 +149,16 @@ def gantt(request, template_name='gantt.htm'):
         project_items = ProjectCharter.objects.filter(sponsor=sponsor_filter)
     else:
         project_items = ProjectCharter.objects.all()
-
+   #Implement zoom on the Gantt Chart
+    if request.GET.get('zoom_level'):
+       outlook_filter = request.GET.get('zoom_level')
+    else:
+        outlook_filter = 1
+    quarters = Quarter.objects.all()
     context = {
         'project_items':project_items,
+        'quarters':quarters,
+        'outlook':outlook_filter
     }
     return render(request, template_name, context=context)
 

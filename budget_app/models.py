@@ -15,18 +15,31 @@ class AccountInfo(models.Model):
     def __str__(self):
         return self.username
 '''
-
-class Quarter(models.Model):
-    quarter_name = models.CharField(max_length=20)
-    def __str__(self):
-        return self.quarter_name
-
 class FiscalYear(models.Model):
     FY_name = models.CharField(max_length = 20)
     FY_start_date = models.DateField('FY Start Date')
     FY_end_date = models.DateField('FY End Date')
     def __str__(self):
         return self.FY_name
+
+class Quarter(models.Model):
+    quarter_name = models.CharField(max_length=20)
+    fiscalyear = models.ForeignKey(FiscalYear, on_delete=models.PROTECT)
+    quarter_start = models.DateField('Quarter start date', blank=True, null=True)
+    quarter_enddate = models.DateField('Quarter end date', blank=True, null=True)
+    def __str__(self):
+        return self.quarter_name
+    def quarter_start_today(self):
+        d1 = self.quarter_start
+        result = d1 - datetime.date.today()
+        lead = result.days
+        if lead > 0:
+            lead  = lead
+        else:
+            lead = 0
+        return round(100*lead/365)
+
+
 
 class Schedule(models.Model):
     schedule_name = models.CharField(max_length = 20, blank=True, null=True)
