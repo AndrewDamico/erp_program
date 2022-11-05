@@ -1,4 +1,5 @@
 from django.db import models
+import datetime
 from django.utils import timezone
 from django.contrib.auth.models import User
 from django.db.models import Sum
@@ -44,6 +45,29 @@ class Schedule(models.Model):
         if not self.schedule_name:
             self.schedule_name = f"{self.quarter} {self.fiscalyear} ({self.start_date} to {self.end_date})"
         return self.schedule_name
+    @property
+    def start_date_n(self):
+        d1 = self.start_date
+        result = d1 - datetime.date.today()
+        lead = result.days
+        if lead > 0:
+            lead  = lead
+        else:
+            lead = 0
+        return round(100*lead/365)
+    @property
+    def end_date_n(self):
+        d1 = self.end_date
+        result = d1 - datetime.date.today()
+        lead = result.days
+        if lead > 364:
+            lead = 365
+        calc = round(100*lead/365) - self.start_date_n
+        return calc
+
+
+
+
     # Approval
 
 class ExpenseInfo(models.Model):

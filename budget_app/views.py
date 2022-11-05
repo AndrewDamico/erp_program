@@ -51,6 +51,13 @@ def programs(request):
     return render(request,'budget_app/programs.html', context=context)
 
 def projects(request):
+    #Filtering
+    if request.GET.get('featured'):
+        featured_filter = request.GET.get('featured')
+        project_items = ProjectCharter.objects.filter(featured_choices=featured_filter)
+    else:
+        project_items = ProjectCharter.objects.all()
+
     project_items = ProjectCharter.objects.all()
     context = {
         'project_items':project_items,
@@ -134,3 +141,17 @@ def other(request):
 def about(request):
     time = datetime.datetime.now()
     return render(request, 'about.html',{'time': time})
+
+def gantt(request, template_name='gantt.htm'):
+    # TODO get event start, end, and milestone from schedule
+    if request.GET.get('sponsor_filter'):
+        sponsor_filter = request.GET.get('sponsor_filter')
+        project_items = ProjectCharter.objects.filter(sponsor=sponsor_filter)
+    else:
+        project_items = ProjectCharter.objects.all()
+
+    context = {
+        'project_items':project_items,
+    }
+    return render(request, template_name, context=context)
+

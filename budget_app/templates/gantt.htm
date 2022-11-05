@@ -3,12 +3,46 @@
 
 
 {% block body_block %}
-    <form action="{% url 'test' %}" method="get">
+    <form action="{% url 'gantt' %}" method="get">
     <label for="sponsor_filter">Filter by Sponsor</label>
     <input type="text" name="sponsor_filter">
     <input type="submit" value="sponsor_filter" />
     <input type="submit" value="reset" />
 </form>
+    <div class="card">
+    <h5 class="card-header">Gantt Chart</h5>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table">
+                <thead> " This is a Gantt Chart</thead>
+                <tbody>
+                    {% for project_item in project_items %}
+                    <tr>
+                        <td width="100%">
+                            <svg width=100% height="60">
+                                  <defs>
+                                    <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="0%">
+                                      <stop offset="0%" style="stop-color:rgb(078,042,132);stop-opacity:.75" />
+                                      <stop offset="100%" style="stop-color:rgb(255,255,255);stop-opacity:.5" />
+                                    </linearGradient>
+                                  </defs>
+                            <rect x={{ project_item.schedule.start_date_n }}% width={{ project_item.schedule.end_date_n }}% height="40" rx="10" ry="10" style="fill:rgb(078,042,132);stroke:black;stroke-width:2" />
+                            <text x={{ project_item.schedule.start_date_n }}% y=55 fill="#000000" font-size="10" font-family="Verdana">{{  project_item.name }}</text>
+                            Sorry, your browser does not support inline SVG.
+                            </svg>
+                            <!--
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-bar-chart-2">
+                                <line x1="18" y1="20" x2="18" y2="10"></line>
+                                <line x1="12" y1="20" x2="12" y2="4"></line>
+                                <line x1="6" y1="20" x2="6" y2="14"></line>
+                            </svg>
+                            -->
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+    </div>
     <div class="card">
         <h5 class="card-header">Programs</h5>
         <div class="card-body">
@@ -17,7 +51,9 @@
                     <thead>
                     <tr>
                         <th>Project Name</th>
-                        <th>Event Date</th>
+                        <th>Start Date</th>
+                        <th>End Date</th>
+                        <th>Milestone</th>
                         <th>Project Quarter</th>
                         <th>Project Year</th>
                         <th>Sponsor</th>
@@ -27,7 +63,9 @@
                     {% for project_item in project_items %}
                         <tr>
                             <td>{{ project_item.name }}</td>
-                            <td>{{  project_item.schedule.event_date }}</td>
+                            <td>{{ project_item.schedule.start_date }}</td>
+                            <td>{{ project_item.schedule.end_date }}</td>
+                            <td>{{ project_item.schedule.event_date }}</td>
                             <td>{{ project_item.schedule.quarter }}</td>
                             <td>{{ project_item.schedule.fiscalyear }}</td>>
                             <td>{{ project_item.sponsor }}</td>>

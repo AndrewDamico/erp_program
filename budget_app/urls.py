@@ -8,6 +8,7 @@ urlpatterns = [
     path('programs/',views.programs, name = 'programs'),
     path('projects/',views.projects, name = 'projects'),
     path('budgets/',views.programs, name = 'programs'),
+    path('gantt/', views.gantt, name = 'gantt'),
     path('other/', other, name = 'otherpage'),
     path('table/', views.table, name = 'table'),
     path('about/', about, name = 'about'),
