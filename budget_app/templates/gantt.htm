@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block body_block %}
+    <form action="{% url 'test' %}" method="get">
+    <label for="sponsor_filter">Filter by Sponsor</label>
+    <input type="text" name="sponsor_filter">
+    <input type="submit" value="sponsor_filter" />
+    <input type="submit" value="reset" />
+</form>
+    <div class="card">
+        <h5 class="card-header">Programs</h5>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th>Project Name</th>
+                        <th>Event Date</th>
+                        <th>Project Quarter</th>
+                        <th>Project Year</th>
+                        <th>Sponsor</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for project_item in project_items %}
+                        <tr>
+                            <td>{{ project_item.name }}</td>
+                            <td>{{  project_item.schedule.event_date }}</td>
+                            <td>{{ project_item.schedule.quarter }}</td>
+                            <td>{{ project_item.schedule.fiscalyear }}</td>>
+                            <td>{{ project_item.sponsor }}</td>>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+           <!-- #todo <a href="#" class="btn btn-block btn-light">View all</a> -->
+        </div>
+    </div>
+{% endblock body_block %}
+
+
+
