@@ -37,6 +37,7 @@
                 <table class="table">
                     <thead>
                     <tr>
+                        <th>Project ID</th>
                         <th>Project Name</th>
                         <th>Planning Date</th>
                         <th>Event Date</th>
@@ -48,8 +49,9 @@
                     <tbody>
                     {% for project_item in project_items %}
                         <tr>
-                            <td>{{ project_item.name }}</td>
-                            <td>{{  project_item.schedule.start_date }}</td>
+                            <td>{{ project_item.id }}</td>
+                            <td class="editable" data-id="{{ project_item.id }}" data-type="name">{{ project_item.name }}</td>
+                            <td class="editable" data-id="{{  project_item.id }}" data-type="start_date">{{  project_item.schedule.start_date }}</td>
                             <td>{{  project_item.date }}</td>
                             <td>{{ project_item.schedule.quarter }}</td>
                             <td>{{ project_item.schedule.fiscalyear }}</td>>
@@ -63,3 +65,15 @@
         </div>
     </div>
 {% endblock body_block %}
+
+{% block custom_js %}
+    <script>
+        $(document).ready(function(){
+            $(document).on("click",".editable",function(){
+                var value=$(this).text();
+                var input="<input type='text' class='input-data' value='"+value+"' class='form-control'>";
+                $(this).html(input);
+            })
+        })
+    </script>
+{%  endblock custom_js %}

@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'reports',
     'budget_app',
     'data_explorer',
+    'events',
 ]
 
 MIDDLEWARE = [

@@ -22,4 +22,5 @@ urlpatterns = [
     path('',include('data_explorer.urls')),
     path('',include('approvals.urls')),
     path('',include('reports.urls')),
+    path('',include('events.urls'))
 ]
