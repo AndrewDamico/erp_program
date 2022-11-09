@@ -61,11 +61,6 @@ def read_all(request):
 
     return render(request,"events.html", context)
 
-def delete_event(request, event_id):
-    return HttpResponse("Event ID")
-
-def delete_venue(request, venue_id):
-    return HttpResponse("Event ID")
 
 # EVENT MANAGEMENT
 def update_event(request, event_id):
@@ -89,8 +84,15 @@ def edit_event(request):
             event.is_active = request.POST.get('is_active','')
             event.save()
             messages.success(request, "Successful")
+        return HttpResponseRedirect('read_all')
+        #return HttpResponseRedirect("update_event/"+str(event.id)+"")
 
-        return HttpResponseRedirect("update_event/"+str(event.id)+"")
+def delete_event(request, event_id):
+    event = Event.objects.get(id=event_id)
+    event.delete()
+    messages.error(request, "Sucessfull Deletion")
+
+    return HttpResponseRedirect('/read_all')
 
 # LOCATION MANAGEMENT
 def update_venue(request, venue_id):
@@ -99,7 +101,6 @@ def update_venue(request, venue_id):
         return HttpResponse("Venue not found")
     else:
         return render(request, "venue_edit.html",{'venue':venue})
-
 
 def edit_venue(request):
     if request.method!="POST":
@@ -115,4 +116,12 @@ def edit_venue(request):
             venue.save()
             messages.success(request, "Successful")
 
-        return HttpResponseRedirect("update_venue/"+str(venue.id)+"")
+        return HttpResponseRedirect('read_all')
+        #return HttpResponseRedirect("update_venue/"+str(venue.id)+"")
+
+def delete_venue(request, venue_id):
+    venue = Venue.objects.get(id=venue_id)
+    venue.delete()
+    messages.error(request, "Sucessfull Deletion")
+
+    return HttpResponseRedirect('/read_all')
