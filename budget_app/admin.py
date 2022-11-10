@@ -13,7 +13,7 @@ models = [
     CostType,
     ProjectCharter,
     Program,
-    AnnualBudget
+    AnnualBudget,
 ]
 
 for model in models:

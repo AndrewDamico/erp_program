@@ -1,10 +1,12 @@
 from django.db import models
 from django.utils.dateformat import DateFormat
+from budget_app.models import ProjectCharter
 
 # Create your models here.
 class Event(models.Model):
     id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=255)
+    project = models.ForeignKey(ProjectCharter, on_delete=models.CASCADE)
     description = models.TextField()
     date = models.DateField()
     created_at = models.DateTimeField(auto_now_add=True)
@@ -25,3 +27,9 @@ class Venue(models.Model):
     objects = models.Manager()
     def __str__(self):
         return self.name
+
+class EventProject(models.Model):
+    id = models.AutoField(primary_key=True)
+    event_id = models.ForeignKey(Event, on_delete=models.CASCADE)
+    project_id = models.ForeignKey(ProjectCharter, on_delete=models.CASCADE)
+    created_at = models.DateTimeField(auto_now_add=True)

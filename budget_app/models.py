@@ -147,11 +147,13 @@ class Budget(models.Model):
         return BudgetItems.objects.filter(Budget=self).aggregate(Sum("cost"))['cost__sum']
 
 class ProjectCharter(models.Model):
+    id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=30)
     budget = models.ForeignKey(Budget, on_delete=models.PROTECT)
     schedule = models.ForeignKey(Schedule, on_delete=models.PROTECT)
     scope = models.ForeignKey(ScopeStatement, on_delete=models.PROTECT)
     sponsor = models.CharField(max_length=30)
+    objects = models.Manager()
     #approval
     @property
     def date(self):

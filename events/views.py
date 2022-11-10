@@ -2,11 +2,15 @@ from django.shortcuts import render
 from django.contrib import messages
 from django.http import HttpResponse, HttpResponseRedirect
 from .models import *
+from budget_app.models import ProjectCharter
 
 # Create your views here.
 def addEvent(request):
-    return render(request,"add_event.html")
-
+    projects = ProjectCharter.objects.all()
+    context = {
+        "projects":projects
+    }
+    return render(request,"add_event.html", context)
 
 def events(request):
     context = {
@@ -14,21 +18,6 @@ def events(request):
     }
     return render(request, 'events.html', context)
 
-def add_event(request):
-    if request.method != "POST":
-        return HttpResponse("Method not allowed")
-    else:
-        try:
-            event = Event(
-                name = request.POST.get('name',''),
-                description = request.POST.get('description',''),
-                date = request.POST.get('date','')
-            )
-            event.save()
-            messages.success(request, "Successful")
-        except:
-            messages.error(request, "Failed")
-        return HttpResponseRedirect("/addEvent")
 
 def add_venue(request):
     if request.method != "POST":
@@ -63,12 +52,31 @@ def read_all(request):
 
 
 # EVENT MANAGEMENT
+def add_event(request):
+    if request.method != "POST":
+        return HttpResponse("Method not allowed")
+    else:
+        charter_id = request.POST.get('project')
+        instance = ProjectCharter.objects.filter(id=charter_id)[0]
+        event = Event(
+            name = request.POST.get('name',''),
+            project = instance,
+            description = request.POST.get('description',''),
+            date = request.POST.get('date','')
+        )
+        event.save()
+        messages.success(request, "Successful")
+
+            #messages.error(request, "Failed")
+        return HttpResponseRedirect("/addEvent")
+
 def update_event(request, event_id):
     event = Event.objects.get(id=event_id)
+    projects = ProjectCharter.objects.all
     if event == None:
         return HttpResponse("Event not found")
     else:
-        return render(request,"event_edit.html",{'event':event})
+        return render(request,"event_edit.html",{'event':event,'projects':projects})
 
 def edit_event(request):
     if request.method!="POST":
@@ -78,12 +86,16 @@ def edit_event(request):
         if event == None:
             return HttpResponse("<h2>Event Not Found</h2>")
         else:
+            project_id = request.POST.get('project','')
+            instance = ProjectCharter.objects.filter(id=project_id)[0]
             event.name = request.POST.get('name','')
             event.description = request.POST.get('description','')
+            event.project = instance
             event.date = request.POST.get('date','')
             event.is_active = request.POST.get('is_active','')
             event.save()
             messages.success(request, "Successful")
+
         return HttpResponseRedirect('read_all')
         #return HttpResponseRedirect("update_event/"+str(event.id)+"")
 

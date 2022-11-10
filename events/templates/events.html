@@ -12,7 +12,7 @@ Events Page
 {% endblock custom_js %}
 
 {% block body_block %}
-    <div class="container">
+    <div class="card">
         <div class="row">
             <div class="col-lg-12">
                 <div class="form-group bg_blue">
@@ -24,6 +24,7 @@ Events Page
                             <tr>
                                 <th>Event ID</th>
                                 <th>Event Name</th>
+                                <th>Project</th>
                                 <th>End Date</th>
                                 <th>Event Description</th>
                                 <th>is_active</th>
@@ -33,6 +34,7 @@ Events Page
                                 <tr>
                                     <td>{{ event.id }}</td>
                                     <td>{{ event.name }}</td>
+                                    <td>{{ event.project }}</td>
                                     <td>{{ event.date }}</td>
                                     <td>{{ event.description }}</td>
                                     <td>{{ event.is_active }}</td>

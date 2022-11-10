@@ -18,7 +18,7 @@
 <div class="container-fluid">
     <div class="row">
     <!-- load the sidebar -->
-        <nav id="sidebar" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
+        <nav id="sidebar" class="col-md-1 col-lg-1 d-md-block bg-light sidebar collapse">
             <img class='responsive-img' src="{% static 'budget_app/Logo MSDS SLC.png' %}" width="100%">
             <div class="position-sticky pt-md-5">
                 <ul class="nav flex-column">
@@ -27,7 +27,7 @@
             </div>
         </nav>
     <!-- load the breadcrumb -->
-        <main class="col-md-9 ml-sm-auto col-lg-10 px-md-4 py-4">
+        <main class="col-md-9 ml-sm-auto col-lg-11 px-md-4 py-4">
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="#">Home</a></li>
@@ -54,7 +54,7 @@
 
 <!-- todo -->
 {% block custom_css %}{%  endblock custom_css %}
-{%  block custom_js %}{%  endblock custom_js %}
+
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
@@ -80,6 +80,7 @@
         crossorigin="anonymous"></script>
 
 <link rel="script" href="{% static 'js/popper.min.js' %}">
+{%  block custom_js %}{%  endblock custom_js %}
 
 </body>
 </html>

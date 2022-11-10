@@ -4,6 +4,7 @@ from .models import *
 models = [
     Event,
     Venue,
+    EventProject
 ]
 
 for model in models:

@@ -1,7 +1,8 @@
 from django.urls import path,include
-from . import views
+from . import views, apiViews
 from django.contrib.auth import views as auth_views
 from .views import *
+from .apiViews import *
 
 
 urlpatterns = [
@@ -35,5 +36,11 @@ urlpatterns = [
         'delete_event/<str:event_id>',
         views.delete_event,
         name="delete_event"),
+
+    # Get select dropdown values
+    path(
+        'get_projects',
+        apiViews.getProjects,
+        name="get_projects"),
 ]
 
