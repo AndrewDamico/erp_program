@@ -42,5 +42,10 @@ urlpatterns = [
         'get_projects',
         apiViews.getProjects,
         name="get_projects"),
+
+    path(
+        'live_edit',
+        apiViews.live_edit,
+        name="live_edit"),
 ]
 

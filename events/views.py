@@ -68,7 +68,7 @@ def add_event(request):
         messages.success(request, "Successful")
 
             #messages.error(request, "Failed")
-        return HttpResponseRedirect("/addEvent")
+        return HttpResponseRedirect('read_all')
 
 def update_event(request, event_id):
     event = Event.objects.get(id=event_id)

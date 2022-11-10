@@ -8,9 +8,6 @@ Events Page
 {% block custom_css %}
 {%  endblock custom_css %}
 
-{% block custom_js %}
-{% endblock custom_js %}
-
 {% block body_block %}
     <div class="card">
         <div class="row">
@@ -21,6 +18,20 @@ Events Page
                 <div class="table-responsive">
                     <table class="table">
                         <thead>
+                         <div class="row">
+                            <div class="form-group col-lg-12">
+                                {% if messages %}
+                                    {% for message in messages %}
+                                        {%  if message.tags == 'success' %}
+                                            <div class="alert alert-success">{{ message }}</div>
+                                        {%  elif message.tags == 'error' %}
+                                            <div class="alert alert-danger">{{ message }}</div>
+                                        {% endif %}
+                                    {% endfor %}
+                                {% endif %}
+                            </div>
+                         </div>
+                         <a href="../addEvent" class="btn btn-info align-content-center">Add Record</a>
                             <tr>
                                 <th>Event ID</th>
                                 <th>Event Name</th>
@@ -33,11 +44,11 @@ Events Page
                             {% for event in events %}
                                 <tr>
                                     <td>{{ event.id }}</td>
-                                    <td>{{ event.name }}</td>
-                                    <td>{{ event.project }}</td>
-                                    <td>{{ event.date }}</td>
-                                    <td>{{ event.description }}</td>
-                                    <td>{{ event.is_active }}</td>
+                                    <td class="editable" data-id="{{ event.id }}" data-type="name">{{ event.name }}</td>
+                                    <td class="editable" data-id="{{ event.id }}" data-type="project">{{ event.project }}</td>
+                                    <td class="editable" data-id="{{ event.id }}" data-type="date">{{ event.date }}</td>
+                                    <td class="editable" data-id="{{ event.id }}" data-type="description">{{ event.description }}</td>
+                                    <td class="editable" data-id="{{ event.id }}" data-type="is_active">{{ event.is_active }}</td>
                                     <td><a href="/delete_event/{{ event.id }}" class="btn btn-danger">Delete</a>
                                         <a href="/update_event/{{ event.id }}" class="btn btn-success">Update</a></td>
                                 </tr>
@@ -77,3 +88,55 @@ Events Page
         </div>
     </div>
 {% endblock body_block %}
+
+{% block custom_js %}
+    <script>
+    $(document).ready(function(){
+        $(document).on("dblclick",".editable",function(){
+            var value=$(this).text()
+            var input="<input type='text' class='input-data' value='"+value+"' class='form-controll'>";
+            $(this).html(input);
+            $(this).removeClass("editable")
+        });
+
+        $(document).on("blur",".input-data",function(){
+            var value=$(this).val();
+            var td=$(this).parent("td");
+            $(this).remove();
+            td.html(value);
+            td.addClass("editable");
+            var type=td.data("type")
+            sendToServer(td.data("id"),value, type)
+        });
+
+        $(document).on("keypress",".input-data",function(e){
+            var key=e.which;
+            if(key==13){
+                var value=$(this).val();
+                var td=$(this).parent('td');
+                $(this).remove()
+                td.html(value);
+                td.addClass("editable");
+                var type=td.data("type")
+                sendToServer(td.data("id"),value, type)
+            }
+        });
+        function sendToServer(id, value, type){
+            console.log(id);
+            console.log(value);
+            console.log(type);
+            $.ajax({
+                url:"live_edit",
+                type:"POST",
+                data:{id:id,type:type, value:value},
+            })
+                .done(function(response){
+                    console.log(response);
+                })
+                .fail(function(response){
+                    console.log("Error")
+                });
+        }
+    });
+    </script>
+{% endblock custom_js %}
