@@ -30,21 +30,32 @@ ALLOWED_HOSTS = ['localhost', '127.0.0.1', '192.168.0.0']
 
 
 # Application definition
+def build_apps():
+    INSTALLED_APPS = [
+        'django.contrib.admin',
+        'django.contrib.auth',
+        'django.contrib.contenttypes',
+        'django.contrib.sessions',
+        'django.contrib.messages',
+        'django.contrib.staticfiles',
+        'app_theme',
+        'approvals',
+        'reports',
+        'budget_app',
+        'data_explorer',
+        'events',
+    ]
 
-INSTALLED_APPS = [
-    'django.contrib.admin',
-    'django.contrib.auth',
-    'django.contrib.contenttypes',
-    'django.contrib.sessions',
-    'django.contrib.messages',
-    'django.contrib.staticfiles',
-    'app_theme',
-    'approvals',
-    'reports',
-    'budget_app',
-    'data_explorer',
-    'events',
-]
+    access =  (env('a2dam'))
+
+    if access == 'True':
+        INSTALLED_APPS.append('a2dam')
+
+    return INSTALLED_APPS
+
+INSTALLED_APPS = build_apps()
+
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

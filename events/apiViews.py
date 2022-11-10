@@ -27,6 +27,11 @@ def live_edit(requests):
         event.description = value
     if type == "is_active":
         event.is_active = value
+    if type == "start_time":
+        event.start_time = value
+    if type == "end_time":
+        event.end_time = value
+
     event.save()
     return JsonResponse({"success":"Updated"})
 

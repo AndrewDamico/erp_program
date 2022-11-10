@@ -1,5 +1,5 @@
 from django.db import models
-from django.utils.dateformat import DateFormat
+from django.utils.dateformat import DateFormat, TimeFormat
 from budget_app.models import ProjectCharter
 
 # Create your models here.
@@ -9,9 +9,17 @@ class Event(models.Model):
     project = models.ForeignKey(ProjectCharter, on_delete=models.CASCADE)
     description = models.TextField()
     date = models.DateField()
+    start_time = models.TimeField()
+    end_time = models.TimeField()
     created_at = models.DateTimeField(auto_now_add=True)
     is_active = models.BooleanField(default=True)
     objects = models.Manager()
+
+    #TODO
+    #@property
+    #def start_time(self):
+    #    return TimeFormat(self.start_time).format("H:i")
+
     def __str__(self):
         return self.name
     def date_format(self):

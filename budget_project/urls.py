@@ -15,12 +15,28 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+import os
+import environ
 
-urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('',include('budget_app.urls')),
-    path('',include('data_explorer.urls')),
-    path('',include('approvals.urls')),
-    path('',include('reports.urls')),
-    path('',include('events.urls'))
-]
+env = environ.Env()
+environ.Env.read_env()
+
+def make_urls():
+
+    urlpatterns = [
+        path('admin/', admin.site.urls),
+        path('',include('budget_app.urls')),
+        path('',include('data_explorer.urls')),
+        path('',include('approvals.urls')),
+        path('',include('reports.urls')),
+        path('',include('events.urls')),
+    ]
+
+    if env('a2dam') == "True":
+        print ("True")
+        loc = path('', include('a2dam.urls'))
+        urlpatterns.append(loc)
+
+    return urlpatterns
+
+urlpatterns = make_urls()

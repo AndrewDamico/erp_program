@@ -62,7 +62,9 @@ def add_event(request):
             name = request.POST.get('name',''),
             project = instance,
             description = request.POST.get('description',''),
-            date = request.POST.get('date','')
+            date = request.POST.get('date',''),
+            start_time = request.POST.get('start_time',''),
+            end_time = request.POST.get('end_time','')
         )
         event.save()
         messages.success(request, "Successful")
