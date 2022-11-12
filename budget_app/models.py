@@ -154,6 +154,7 @@ class ProjectCharter(models.Model):
     scope = models.ForeignKey(ScopeStatement, on_delete=models.PROTECT)
     sponsor = models.CharField(max_length=30)
     objects = models.Manager()
+    organization = models.CharField(max_length=30, default="Northwestern")
     #approval
     @property
     def date(self):
