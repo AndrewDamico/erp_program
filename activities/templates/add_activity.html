@@ -9,6 +9,7 @@
 {% endblock custom_css %}
 
 {% block custom_js %}
+    $("#datepicker").datepicker("setDate", new Date());
 {% endblock custom_js %}
 
 {% block body_block %}
@@ -25,6 +26,13 @@
                                 name="action"
                                 class="form-control">
                         </div>
+                        <div class="form-group"><label class="control-label">Description</label><input
+                                type="text"
+                                name="description"
+                                class="form-control">
+                        </div>
+
+
                         <div class="form-group"><label class="control-label">WBS Identifier</label><input
                                 type="text"
                                 name="wbs"
@@ -40,12 +48,14 @@
                         <div class="form-group"><label class="control-label">Start Date</label><input
                                 type="date"
                                 name="start_date"
+                                value="2022-11-12"
                                 class="form-control">
                         </div>
 
                         <div class="form-group"><label class="control-label">End Date</label><input
                                 type="date"
                                 name="end_date"
+                                value="{{ event.date_format }}"
                                 class="form-control">
                         </div>
 
@@ -58,12 +68,14 @@
                         <div class="form-group"><label class="control-label">Time</label><input
                                 type="text"
                                 name="time"
+                                value="0"
                                 class="form-control">
                         </div>
 
                         <div class="form-group"><label class="control-label">Work</label><input
                                 type="text"
                                 name="work"
+                                value="0"
                                 class="form-control">
                         </div>
 
@@ -86,8 +98,11 @@
                         <div class="form-group"><label class="control-label">Status</label><select
                                 name="status"
                                 class="form-control">
+                                <option selected value="2">Created</option>
                                 {% for state in status %}
+                                    {%  if state.id != 2 %}
                                     <option value="{{ state.id }}">{{ state.value }}</option>
+                                    {% endif %}
                                 {% endfor %}
                             </select>
                         </div>
@@ -95,6 +110,7 @@
                         <div class="form-group"><label class="control-label">Event Class</label><select
                                 name="eventclass"
                                 class="form-control">
+                                <option selected value="7">Work</option>
                                 {% for type in eventclasses %}
                                     <option value="{{ type.id }}">{{ type.name }}</option>
                                 {% endfor %}

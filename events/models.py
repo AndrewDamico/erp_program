@@ -1,4 +1,5 @@
 from django.db import models
+from datetime import datetime
 from django.utils.dateformat import DateFormat, TimeFormat
 from budget_app.models import ProjectCharter
 from a2dam.models import EventClass
@@ -17,10 +18,15 @@ class Event(models.Model):
     is_active = models.BooleanField(default=True)
     objects = models.Manager()
 
+    Default = datetime.today().strftime("mm/dd/yyyy")
+
     #TODO
     #@property
     #def start_time(self):
     #    return TimeFormat(self.start_time).format("H:i")
+    #@property
+    #def startdate():
+    #    return (Default.strftime("%Y-%m-%d"))
 
     def __str__(self):
         return self.name

@@ -45,19 +45,20 @@ class Activity(models.Model):
     id = models.AutoField(primary_key=True)
     eventclass = models.ForeignKey(EventClass, on_delete=models.CASCADE)
     action = models.CharField(max_length=255)
+    description = models.TextField()
     #level = {"1": models.IntegerField(),"2": models.IntegerField(),"3": models.IntegerField(),"4": models.IntegerField(),"level": models.IntegerField()}
     wbs = models.CharField(max_length=255)
     project = models.ForeignKey(ProjectCharter, on_delete=models.CASCADE)
     duration = models.CharField(max_length=255)
     #
-    start_date = models.DateField()
+    start_date = models.DateField(auto_now_add=True)
     sch_start_date = models.DateTimeField(blank=True, null=True)
     #
-    end_date = models.DateField()
+    end_date = models.DateField(auto_now_add=True)
     sch_end_Date = models.DateTimeField(blank=True, null=True)
     #
     sch_duration = models.DurationField(blank=True, null=True)
-    due_date = models.DateField()
+    due_date = models.DateField(auto_now_add=True)
     sch_due_date = models.DateTimeField(blank=True, null=True)
     time = models.DecimalField(max_digits=19, decimal_places=3, default=0)
     work = models.DecimalField(max_digits=19, decimal_places=10, default=0)

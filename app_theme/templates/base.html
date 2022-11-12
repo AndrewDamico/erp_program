@@ -11,20 +11,27 @@
     <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
     <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
     <link rel="stylesheet" href="{% static 'css/custom.css' %}">
+
+    <style>
+        {
+            background: #1e7e34 ;
+        }
+    </style>
+
     {% block custom_css %}{%  endblock custom_css %}
 
 </head>
 
-<body>
+<body style="background: #6f8c74">
 <!-- import the navigation bar from the theme -->
 {% include 'menu/navbar.html' %}
 
-<div class="container-fluid">
-    <div class="row">
+<div class="container-fluid" >
+    <div class="row"  style="background: #7f8fa9">
     <!-- load the sidebar -->
-        <nav id="sidebar" class="col-md-auto col-lg-auto col-xl-auto d-md-block bg-light sidebar collapse">
+        <nav id="sidebar" class="col-md-auto col-lg-auto col-xl-auto d-md-block bg-light sidebar collapse"  style="background: #2c3034">
                 <img class='responsive-img' src="{% static 'budget_app/Logo MSDS SLC.png' %}" width="100%" style="max-width: 200px">
-                <div class="position-sticky pt-md-5">
+                <div class="position-sticky pt-md-5"  style="background: #2c3034" >
                     <ul class="nav flex-column">
                          {% include 'menu/navigation_menu.html' %}
                     </ul>
