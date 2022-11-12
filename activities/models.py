@@ -3,6 +3,7 @@ from django.db import models
 import datetime
 from django.utils.dateformat import DateFormat, TimeFormat
 from budget_app.models import ProjectCharter
+from a2dam.models import EventClass
 
 
 class Status(models.Model):
@@ -42,6 +43,7 @@ class Relationship(models.Model):
 
 class Activity(models.Model):
     id = models.AutoField(primary_key=True)
+    eventclass = models.ForeignKey(EventClass, on_delete=models.CASCADE)
     activity = models.CharField(max_length=255)
     #level = {"1": models.IntegerField(),"2": models.IntegerField(),"3": models.IntegerField(),"4": models.IntegerField(),"level": models.IntegerField()}
     wbs = models.CharField(max_length=255)

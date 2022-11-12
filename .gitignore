@@ -4,6 +4,7 @@ db.sqlite3
 /env
 *.env
 .vscode
+/static
 /static/
 /backup/
 .idea

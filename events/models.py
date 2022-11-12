@@ -1,12 +1,14 @@
 from django.db import models
 from django.utils.dateformat import DateFormat, TimeFormat
 from budget_app.models import ProjectCharter
+from a2dam.models import EventClass
 
 # Create your models here.
 class Event(models.Model):
     id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=255)
     project = models.ForeignKey(ProjectCharter, on_delete=models.CASCADE)
+    eventclass = models.ForeignKey(EventClass, on_delete=models.CASCADE)
     description = models.TextField()
     date = models.DateField()
     start_time = models.TimeField()
