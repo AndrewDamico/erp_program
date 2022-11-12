@@ -44,7 +44,7 @@ class Relationship(models.Model):
 class Activity(models.Model):
     id = models.AutoField(primary_key=True)
     eventclass = models.ForeignKey(EventClass, on_delete=models.CASCADE)
-    activity = models.CharField(max_length=255)
+    action = models.CharField(max_length=255)
     #level = {"1": models.IntegerField(),"2": models.IntegerField(),"3": models.IntegerField(),"4": models.IntegerField(),"level": models.IntegerField()}
     wbs = models.CharField(max_length=255)
     project = models.ForeignKey(ProjectCharter, on_delete=models.CASCADE)
@@ -53,8 +53,8 @@ class Activity(models.Model):
     start_date = models.DateField()
     sch_start_date = models.DateTimeField(blank=True, null=True)
     #
-    finish_date = models.DateField()
-    sch_finish_date = models.DateTimeField(blank=True, null=True)
+    end_date = models.DateField()
+    sch_end_Date = models.DateTimeField(blank=True, null=True)
     #
     sch_duration = models.DurationField(blank=True, null=True)
     due_date = models.DateField()
@@ -62,9 +62,10 @@ class Activity(models.Model):
     time = models.DecimalField(max_digits=19, decimal_places=3, default=0)
     work = models.DecimalField(max_digits=19, decimal_places=10, default=0)
     status = models.ForeignKey(Status, on_delete=models.CASCADE)
-    Predecessor = models.ManyToManyField('Predecesor', blank=True, null=True)
+    predecessor = models.ManyToManyField('Predecesor', blank=True, null=True)
     is_active = models.BooleanField(default=True)
     created_at = models.DateTimeField(auto_now_add=True)
+    objects = models.Manager()
     # TODO user
     def __str__(self):
         return self.activity

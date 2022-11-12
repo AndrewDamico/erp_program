@@ -17,6 +17,8 @@ def live_edit(requests):
     id = requests.POST.get('id','')
     value = requests.POST.get('value','')
     event = Event.objects.get(id=id)
+    type = requests.POST.get('type','')
+
     if type == "name":
         event.name = value
     if type == "project":
@@ -33,6 +35,7 @@ def live_edit(requests):
         event.end_time = value
 
     event.save()
+
     return JsonResponse({"success":"Updated"})
 
 

@@ -37,7 +37,7 @@ Events Page
                                 {% endif %}
                             </div>
                          </div>
-                         <a href="../addEvent" class="btn btn-info align-content-center">Add Record</a>
+                         <a href="../addActivity" class="btn btn-info align-content-center">Add Activity</a>
                             <tr>
                                 <th>Activity ID</th>
                                 <th>Activity</th>
@@ -45,7 +45,7 @@ Events Page
                                 <th>Levels</th>
                                 <th>Project</th>
                                 <th>Start Date</th>
-                                <th>Finish Date</th>
+                                <th>End Date</th>
                                 <th>Due Date</th>
                                 <th>Status</th>
                                 <th>Predecessor</th>
@@ -55,18 +55,18 @@ Events Page
                             {% for activity in activities %}
                                 <tr>
                                     <td>{{ activity.id }}</td>
-                                    <td class="editable" vertical-align="middle" data-id="{{ activity.id }}" data-type="activity">{{ activity.activity }}</td>
+                                    <td class="editable" vertical-align="middle" data-id="{{ activity.id }}" data-type="action">{{ activity.action }}</td>
                                     <td class="editable" vertical-align="middle" data-id="{{ activity.id }}" data-type="wbs">{{ activity.wbs}}</td>
                                     <td class="editable" vertical-align="middle" data-id="{{ activity.id }}" data-type="levels">{{ activity.levels}}</td>
                                     <td class="editable" vertical-align="middle" data-id="{{ activity.id }}" data-type="project">{{ activity.project }}</td>
                                     <td class="editable" vertical-align="middle"  data-id="{{ activity.id }}" data-type="start_date">{{ activity.start_date }}</td>
-                                    <td class="editable" vertical-align="middle"  data-id="{{ activity.id }}" data-type="finish_date">{{ activity.finish_date }}</td>
+                                    <td class="editable" vertical-align="middle"  data-id="{{ activity.id }}" data-type="end_date">{{ activity.end_date }}</td>
                                     <td class="editable" vertical-align="middle"  data-id="{{ activity.id }}" data-type="due_date">{{ activity.due_date }}</td>
                                     <td class="editable" vertical-align="middle"  data-id="{{ activity.id }}" data-type="status">{{ activity.status }}</td>
-                                    <td class="editable" vertical-align="middle"  data-id="{{ activity.id }}" data-type="Predecessor">{{ activity.Predecessor }}</td>
+                                    <td class="editable" vertical-align="middle"  data-id="{{ activity.id }}" data-type="predecessor">{{ activity.predecessor }}</td>
                                     <td class="editable" vertical-align="middle"  data-id="{{ activity.id }}" data-type="is_active">{{ activity.is_active }}</td>
-                                    <td><a href="/delete_event/{{ activity.id }}" class="btn btn-danger">Delete</a>
-                                        <a href="/update_event/{{ activity.id }}" class="btn btn-success">Update</a></td>
+                                    <td><a href="/delete_activity/{{ activity.id }}" class="btn btn-danger">Delete</a>
+                                        <a href="/update_activity/{{ activity.id }}" class="btn btn-success">Update</a></td>
                                 </tr>
                             {% endfor %}
                         </thead>
@@ -82,7 +82,7 @@ Events Page
     $(document).ready(function(){
         $(document).on("dblclick",".editable",function(){
             var value=$(this).text()
-            var input="<input type='text' class='input-data' value='"+value+"' class='form-controll'>";
+            var input="<input type='text' class='input-data' value='"+value+"' class='form-control'>";
             $(this).html(input);
             $(this).removeClass("editable")
         });
@@ -114,7 +114,7 @@ Events Page
             console.log(value);
             console.log(type);
             $.ajax({
-                url:"live_edit",
+                url:"ledit_activities",
                 type:"POST",
                 data:{id:id,type:type, value:value},
             })
