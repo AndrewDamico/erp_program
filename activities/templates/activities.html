@@ -42,7 +42,7 @@ Events Page
                                 <th>Activity ID</th>
                                 <th>Activity</th>
                                 <th>WBS</th>
-                                <th>Levels</th>
+                                <th>Description</th>
                                 <th>Project</th>
                                 <th>Start Date</th>
                                 <th>End Date</th>
@@ -57,14 +57,14 @@ Events Page
                                     <td>{{ activity.id }}</td>
                                     <td class="editable" vertical-align="middle" data-id="{{ activity.id }}" data-type="action">{{ activity.action }}</td>
                                     <td class="editable" vertical-align="middle" data-id="{{ activity.id }}" data-type="wbs">{{ activity.wbs}}</td>
-                                    <td class="editable" vertical-align="middle" data-id="{{ activity.id }}" data-type="levels">{{ activity.levels}}</td>
+                                    <td class="editable" vertical-align="middle" data-id="{{ activity.id }}" data-type="description">{{ activity.description}}</td>
                                     <td class="editable" vertical-align="middle" data-id="{{ activity.id }}" data-type="project">{{ activity.project }}</td>
-                                    <td class="editable" vertical-align="middle"  data-id="{{ activity.id }}" data-type="start_date">{{ activity.start_date }}</td>
-                                    <td class="editable" vertical-align="middle"  data-id="{{ activity.id }}" data-type="end_date">{{ activity.end_date }}</td>
-                                    <td class="editable" vertical-align="middle"  data-id="{{ activity.id }}" data-type="due_date">{{ activity.due_date }}</td>
-                                    <td class="editable" vertical-align="middle"  data-id="{{ activity.id }}" data-type="status">{{ activity.status }}</td>
-                                    <td class="editable" vertical-align="middle"  data-id="{{ activity.id }}" data-type="predecessor">{{ activity.predecessor }}</td>
-                                    <td class="editable" vertical-align="middle"  data-id="{{ activity.id }}" data-type="is_active">{{ activity.is_active }}</td>
+                                    <td class="editable" vertical-align="middle" data-id="{{ activity.id }}" data-type="start_date">{{ activity.start_date }}</td>
+                                    <td class="editable" vertical-align="middle" data-id="{{ activity.id }}" data-type="end_date">{{ activity.end_date }}</td>
+                                    <td class="editable" vertical-align="middle" data-id="{{ activity.id }}" data-type="due_date">{{ activity.due_date }}</td>
+                                    <td class="editable" vertical-align="middle" data-id="{{ activity.id }}" data-type="status">{{ activity.status }}</td>
+                                    <td class="editable" vertical-align="middle" data-id="{{ activity.id }}" data-type="predecessor">{{ activity.predecessor }}</td>
+                                    <td class="editable" vertical-align="middle" data-id="{{ activity.id }}" data-type="is_active">{{ activity.is_active }}</td>
                                     <td><a href="/delete_activity/{{ activity.id }}" class="btn btn-danger">Delete</a>
                                         <a href="/update_activity/{{ activity.id }}" class="btn btn-success">Update</a></td>
                                 </tr>

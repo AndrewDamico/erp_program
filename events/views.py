@@ -3,12 +3,18 @@ from django.contrib import messages
 from django.http import HttpResponse, HttpResponseRedirect
 from .models import *
 from budget_app.models import ProjectCharter
+from activities.models import Status
+from a2dam.models import EventClass
 
 # Create your views here.
 def addEvent(request):
     projects = ProjectCharter.objects.all()
+    status = Status.objects.all()
+    eventclass = EventClass.objects.all()
     context = {
-        "projects":projects
+        "projects":projects,
+        "status":status,
+        "eventclass":eventclass
     }
     return render(request,"add_event.html", context)
 
@@ -57,10 +63,18 @@ def add_event(request):
         return HttpResponse("Method not allowed")
     else:
         charter_id = request.POST.get('project')
-        instance = ProjectCharter.objects.filter(id=charter_id)[0]
+        status_id = request.POST.get('status')
+        eventclass_id = request.POST.get('eventclass')
+
+        project_inst = ProjectCharter.objects.filter(id=charter_id)[0]
+        eventclass_inst = EventClass.objects.filter(id=eventclass_id)[0]
+        status_inst = Status.objects.filter(id=status_id)[0]
+
         event = Event(
             name = request.POST.get('name',''),
-            project = instance,
+            project = project_inst,
+            eventclass = eventclass_inst,
+            status=status_inst,
             description = request.POST.get('description',''),
             date = request.POST.get('date',''),
             start_time = request.POST.get('start_time',''),
@@ -74,11 +88,20 @@ def add_event(request):
 
 def update_event(request, event_id):
     event = Event.objects.get(id=event_id)
-    projects = ProjectCharter.objects.all
+    projects = ProjectCharter.objects.all()
+    status = Status.objects.all()
+    eventclass = EventClass.objects.all()
+
     if event == None:
         return HttpResponse("Event not found")
     else:
-        return render(request,"event_edit.html",{'event':event,'projects':projects})
+        context = {
+            'event':event,
+            'projects':projects,
+            'status':status,
+            'eventclass':eventclass
+        }
+        return render(request,"event_edit.html",context)
 
 def edit_event(request):
     if request.method!="POST":
@@ -88,11 +111,19 @@ def edit_event(request):
         if event == None:
             return HttpResponse("<h2>Event Not Found</h2>")
         else:
-            project_id = request.POST.get('project','')
-            instance = ProjectCharter.objects.filter(id=project_id)[0]
+            charter_id = request.POST.get('project')
+            status_id = request.POST.get('status')
+            eventclass_id = request.POST.get('eventclass')
+
+            project_inst = ProjectCharter.objects.filter(id=charter_id)[0]
+            eventclass_inst = EventClass.objects.filter(id=eventclass_id)[0]
+            status_inst = Status.objects.filter(id=status_id)[0]
+
             event.name = request.POST.get('name','')
             event.description = request.POST.get('description','')
-            event.project = instance
+            event.project = project_inst
+            event.status = status_inst
+            event.eventclass = eventclass_inst
             event.date = request.POST.get('date','')
             event.is_active = request.POST.get('is_active','')
             event.save()

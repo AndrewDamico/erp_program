@@ -3,6 +3,7 @@ from datetime import datetime
 from django.utils.dateformat import DateFormat, TimeFormat
 from budget_app.models import ProjectCharter
 from a2dam.models import EventClass
+from activities.models import Status
 
 # Create your models here.
 class Event(models.Model):
@@ -17,6 +18,7 @@ class Event(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     is_active = models.BooleanField(default=True)
     objects = models.Manager()
+    status = models.ForeignKey(Status, on_delete=models.CASCADE)
 
     Default = datetime.today().strftime("mm/dd/yyyy")
 
@@ -33,6 +35,9 @@ class Event(models.Model):
     def date_format(self):
         df = DateFormat(self.date)
         return df.format("Y-m-d")
+
+#class OutlookEvents(Event):
+
 
 class Venue(models.Model):
     id = models.AutoField(primary_key=True)

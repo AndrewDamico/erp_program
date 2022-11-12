@@ -50,7 +50,7 @@ def add_activity(request):
             eventclass = eventclass_inst,
             action = request.POST.get('action',''),
             wbs = request.POST.get('wbs',''),
-            description=request.POST.get('wbs',''),
+            description=request.POST.get('description',''),
             project = project_inst,
             duration = request.POST.get('duration',''),
             start_date = request.POST.get('start_date',''),
@@ -105,7 +105,7 @@ def edit_activity(request):
             activity.eventclass = eventclass_inst
             activity.project = project_inst
             activity.status = status_inst
-
+            activity.description=request.POST.get('description','')
             activity.action=request.POST.get('action', '')
             activity.wbs=request.POST.get('wbs', '')
 

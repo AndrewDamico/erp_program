@@ -9,6 +9,7 @@ from a2dam.models import EventClass
 class Status(models.Model):
     id = models.AutoField(primary_key=True)
     value = models.CharField(max_length=255)
+    objects = models.Manager()
     def __str__(self):
         return self.value
 
@@ -79,3 +80,4 @@ class Predecesor(models.Model):
     type = models.CharField(
         max_length=2,
     )
+    objects = models.Manager()

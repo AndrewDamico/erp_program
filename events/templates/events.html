@@ -47,6 +47,7 @@ Events Page
                                 <th>End Date</th>
                                 <th>Event Description</th>
                                 <th>is_active</th>
+                                <th>Status</th>
                                 <th>Action</th>
                             </tr>
                             {% for event in events %}
@@ -59,6 +60,7 @@ Events Page
                                     <td class="editable" vertical-align="middle"  data-id="{{ event.id }}" data-type="date">{{ event.date }}</td>
                                     <td class="editable" vertical-align="middle"  data-id="{{ event.id }}" data-type="description">{{ event.description }}</td>
                                     <td class="editable" vertical-align="middle"  data-id="{{ event.id }}" data-type="is_active">{{ event.is_active }}</td>
+                                    <td class="editable" vertical-align="middle"  data-id="{{ event.id }}" data-type="status">{{ event.status }}</td>
                                     <td><a href="/delete_event/{{ event.id }}" class="btn btn-danger">Delete</a>
                                         <a href="/update_event/{{ event.id }}" class="btn btn-success">Update</a></td>
                                 </tr>

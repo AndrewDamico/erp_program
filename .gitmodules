@@ -1,3 +1,6 @@
 [submodule "a2dam"]
 	path = a2dam
 	url = https://github.com/AndrewDamico/a2dam
+[submodule "a2dam_outlook_connector"]
+	path = a2dam_outlook_connector
+	url = https://github.com/AndrewDamico/a2dam_outlook_connector.git
