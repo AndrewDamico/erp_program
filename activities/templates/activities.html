@@ -1,0 +1,130 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{%  block title %}
+Events Page
+{%  endblock title %}
+
+{% block custom_css %}
+    <style>
+        .table td {
+    vertical-align:Middle;
+    font-size:small;
+    }
+    </style>
+{%  endblock custom_css %}
+
+{% block body_block %}
+    <div class="card">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="form-group bg_blue">
+                    All Activities
+                </div>
+                <div class="table-responsive">
+                    <table class="table" font-size="small">
+                        <thead>
+                         <div class="row">
+                            <div class="form-group col-lg-12">
+                                {% if messages %}
+                                    {% for message in messages %}
+                                        {%  if message.tags == 'success' %}
+                                            <div class="alert alert-success">{{ message }}</div>
+                                        {%  elif message.tags == 'error' %}
+                                            <div class="alert alert-danger">{{ message }}</div>
+                                        {% endif %}
+                                    {% endfor %}
+                                {% endif %}
+                            </div>
+                         </div>
+                         <a href="../addEvent" class="btn btn-info align-content-center">Add Record</a>
+                            <tr>
+                                <th>Activity ID</th>
+                                <th>Activity</th>
+                                <th>WBS</th>
+                                <th>Levels</th>
+                                <th>Project</th>
+                                <th>Start Date</th>
+                                <th>Finish Date</th>
+                                <th>Due Date</th>
+                                <th>Status</th>
+                                <th>Predecessor</th>
+                                <th>is_active</th>
+                                <th>Action</th>
+                            </tr>
+                            {% for activity in activities %}
+                                <tr>
+                                    <td>{{ activity.id }}</td>
+                                    <td class="editable" vertical-align="middle" data-id="{{ activity.id }}" data-type="activity">{{ activity.activity }}</td>
+                                    <td class="editable" vertical-align="middle" data-id="{{ activity.id }}" data-type="wbs">{{ activity.wbs}}</td>
+                                    <td class="editable" vertical-align="middle" data-id="{{ activity.id }}" data-type="levels">{{ activity.levels}}</td>
+                                    <td class="editable" vertical-align="middle" data-id="{{ activity.id }}" data-type="project">{{ activity.project }}</td>
+                                    <td class="editable" vertical-align="middle"  data-id="{{ activity.id }}" data-type="start_date">{{ activity.start_date }}</td>
+                                    <td class="editable" vertical-align="middle"  data-id="{{ activity.id }}" data-type="finish_date">{{ activity.finish_date }}</td>
+                                    <td class="editable" vertical-align="middle"  data-id="{{ activity.id }}" data-type="due_date">{{ activity.due_date }}</td>
+                                    <td class="editable" vertical-align="middle"  data-id="{{ activity.id }}" data-type="status">{{ activity.status }}</td>
+                                    <td class="editable" vertical-align="middle"  data-id="{{ activity.id }}" data-type="Predecessor">{{ activity.Predecessor }}</td>
+                                    <td class="editable" vertical-align="middle"  data-id="{{ activity.id }}" data-type="is_active">{{ activity.is_active }}</td>
+                                    <td><a href="/delete_event/{{ activity.id }}" class="btn btn-danger">Delete</a>
+                                        <a href="/update_event/{{ activity.id }}" class="btn btn-success">Update</a></td>
+                                </tr>
+                            {% endfor %}
+                        </thead>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock body_block %}
+
+{% block custom_js %}
+    <script>
+    $(document).ready(function(){
+        $(document).on("dblclick",".editable",function(){
+            var value=$(this).text()
+            var input="<input type='text' class='input-data' value='"+value+"' class='form-controll'>";
+            $(this).html(input);
+            $(this).removeClass("editable")
+        });
+
+        $(document).on("blur",".input-data",function(){
+            var value=$(this).val();
+            var td=$(this).parent("td");
+            $(this).remove();
+            td.html(value);
+            td.addClass("editable");
+            var type=td.data("type")
+            sendToServer(td.data("id"),value, type)
+        });
+
+        $(document).on("keypress",".input-data",function(e){
+            var key=e.which;
+            if(key==13){
+                var value=$(this).val();
+                var td=$(this).parent('td');
+                $(this).remove()
+                td.html(value);
+                td.addClass("editable");
+                var type=td.data("type")
+                sendToServer(td.data("id"),value, type)
+            }
+        });
+        function sendToServer(id, value, type){
+            console.log(id);
+            console.log(value);
+            console.log(type);
+            $.ajax({
+                url:"live_edit",
+                type:"POST",
+                data:{id:id,type:type, value:value},
+            })
+                .done(function(response){
+                    console.log(response);
+                })
+                .fail(function(response){
+                    console.log("Error")
+                });
+        }
+    });
+    </script>
+{% endblock custom_js %}

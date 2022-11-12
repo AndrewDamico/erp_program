@@ -30,6 +30,7 @@ def make_urls():
         path('',include('approvals.urls')),
         path('',include('reports.urls')),
         path('',include('events.urls')),
+        path('',include('activities.urls')),
     ]
 
     if env('a2dam') == "True":

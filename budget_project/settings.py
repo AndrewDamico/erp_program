@@ -44,6 +44,7 @@ def build_apps():
         'budget_app',
         'data_explorer',
         'events',
+        'activities',
     ]
 
     access =  (env('a2dam'))
