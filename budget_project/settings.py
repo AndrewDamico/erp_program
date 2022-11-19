@@ -100,7 +100,15 @@ DATABASES = {
         'PASSWORD': env('erp_PASSWORD'),
         'HOST': env('erp_HOST'),
         'PORT': env('erp_PORT'),
-    }
+    },
+    'a2dam': {
+        'ENGINE': env('a2dam_ENGINE'),
+        'NAME': env('a2dam_NAME'),
+        'USER': env('a2dam_USER'),
+        'PASSWORD': env('a2dam_PASSWORD'),
+        'HOST': env('a2dam_HOST'),
+        'PORT': env('a2dam_PORT'),
+    },
 }
 
 
