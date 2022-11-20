@@ -45,6 +45,8 @@ def build_apps():
         'data_explorer',
         'events',
         'activities',
+        'msGraph',
+        'polymorphic',
     ]
 
     access =  (env('a2dam'))

@@ -1,23 +1,36 @@
 from django.db import models
 from datetime import datetime
 from django.utils.dateformat import DateFormat, TimeFormat
+from django.utils import timezone
 from budget_app.models import ProjectCharter
 from a2dam.models import EventClass
 from activities.models import Status
+from polymorphic.models import PolymorphicModel
 
 # Create your models here.
-class Event(models.Model):
-    id = models.AutoField(primary_key=True)
-    name = models.CharField(max_length=255)
+
+class agenda_item(PolymorphicModel):
+    subject = models.CharField(max_length=512)
+    body = models.TextField()
+    start_time = models.DateTimeField()
+    end_time = models.DateTimeField()
+
+class Event(agenda_item):
+    # Class Properties
+    #subject = models.CharField(max_length=255)
+    #body = models.TextField(null=True, blank=True)
+    #start_time = models.DateTimeField(default=timezone.now())
+    #end_time = models.DateTimeField(default=timezone.now())
+
+    #ERP Properties
+    #id = models.AutoField(primary_key=True)
     project = models.ForeignKey(ProjectCharter, on_delete=models.CASCADE)
     eventclass = models.ForeignKey(EventClass, on_delete=models.CASCADE)
-    description = models.TextField()
-    date = models.DateField()
-    start_time = models.TimeField()
-    end_time = models.TimeField()
+    #date = models.DateField() #Deleted
+    #META
     created_at = models.DateTimeField(auto_now_add=True)
     is_active = models.BooleanField(default=True)
-    objects = models.Manager()
+
     status = models.ForeignKey(Status, on_delete=models.CASCADE)
 
     Default = datetime.today().strftime("mm/dd/yyyy")
