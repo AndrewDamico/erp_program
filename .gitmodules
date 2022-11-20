@@ -4,3 +4,6 @@
 [submodule "a2dam_outlook_connector"]
 	path = a2dam_outlook_connector
 	url = https://github.com/AndrewDamico/a2dam_outlook_connector.git
+[submodule "MSGraph_Go"]
+	path = MSGraph_Go
+	url = https://github.com/AndrewDamico/MSGraph_Go.git
