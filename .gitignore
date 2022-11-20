@@ -10,4 +10,4 @@ db.sqlite3
 .idea
 _build
 /budget_project/static/
-/MSGraph_Go
+/MSGraph_Go/
