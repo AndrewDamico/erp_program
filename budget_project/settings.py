@@ -80,7 +80,6 @@ def build_apps():
     for Set in CONTAINER:
         for item in Set:
             INSTALLED_APPS.append(item)
-    print (INSTALLED_APPS)
     return INSTALLED_APPS
 
 INSTALLED_APPS = build_apps()
