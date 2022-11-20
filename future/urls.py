@@ -24,17 +24,9 @@ environ.Env.read_env()
 def make_urls():
 
     urlpatterns = [
-        path('admin/', admin.site.urls),
-        path('',include('budget_app.urls')),
-        path('',include('future.urls')),
-        path('',include('events.urls')),
-        path('',include('activities.urls')),
+        # TODO
     ]
 
-    if env('a2dam') == "True":
-        print ("True")
-        loc = path('', include('a2dam.urls'))
-        urlpatterns.append(loc)
 
     return urlpatterns
 

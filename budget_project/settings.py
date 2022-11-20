@@ -31,34 +31,59 @@ ALLOWED_HOSTS = ['localhost', '127.0.0.1', '192.168.0.0', '0.0.0.0']
 
 # Application definition
 def build_apps():
-    INSTALLED_APPS = [
+    INSTALLED_APPS = []
+
+    PROJECT_APPS = [
+        'budget_app', # Original App which creates project entities. Should rename.
+        'events', # App which holds event types
+        'activities', # App which holds activity types
+        'msGraph', # App which holds MS Graph/Azure Types
+    ]
+
+    BASE_APPS = [
+        # Base applications
         'django.contrib.admin',
         'django.contrib.auth',
         'django.contrib.contenttypes',
         'django.contrib.sessions',
         'django.contrib.messages',
         'django.contrib.staticfiles',
-        'app_theme',
-        'approvals',
-        'reports',
-        'budget_app',
-        'data_explorer',
-        'events',
-        'activities',
-        'msGraph',
+
+    ]
+
+    THIRD_PARTY_APPS = [
+        # Third Party Apps
         'polymorphic',
     ]
 
-    access =  (env('a2dam'))
+    THEME_APPS = [
+        # Apps related to GUI
+        'app_theme'
+    ]
 
-    if access == 'True':
-        INSTALLED_APPS.append('a2dam')
+    FUTURE_APPS = [
+        # Apps to be developed in the future and acting as place holders.
+        'future',
+        #'erp_program.future.approvals',
+        #'erp_program.future.reports',
+        #'erp_program.future.data_explorer',
+    ]
 
+    PRIVILEGED = []
+    # Decide if privileged apps will run:
+    # access = (env('a2dam')) #Debugging. TODO Remove
+    if env('a2dam'): PRIVILEGED.append('a2dam') # TODO Automate this in the future
+
+    CONTAINER = [BASE_APPS, PROJECT_APPS, THIRD_PARTY_APPS, THEME_APPS, FUTURE_APPS, PRIVILEGED]
+
+
+    for Set in CONTAINER:
+        for item in Set:
+            INSTALLED_APPS.append(item)
+    print (INSTALLED_APPS)
     return INSTALLED_APPS
 
 INSTALLED_APPS = build_apps()
-
-
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
